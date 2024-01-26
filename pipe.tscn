@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://bx74fdhtd1osw"]
+
+[ext_resource type="Texture2D" uid="uid://den4sx3n8oo4t" path="res://assets/pipe.png" id="1_jc30c"]
+[ext_resource type="Script" path="res://pipe.gd" id="1_uveik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pjubu"]
+size = Vector2(74, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2loj"]
+size = Vector2(68.5, 521.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlsqs"]
+size = Vector2(73, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0tuk"]
+size = Vector2(68, 521)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah8fh"]
+size = Vector2(21, 270)
+
+[node name="Pipe" type="Area2D" groups=["pipes"]]
+position = Vector2(0, 25)
+script = ExtResource("1_uveik")
+
+[node name="Lower" type="Sprite2D" parent="."]
+texture = ExtResource("1_jc30c")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(1, 118)
+shape = SubResource("RectangleShape2D_pjubu")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0.75, 398.25)
+shape = SubResource("RectangleShape2D_o2loj")
+
+[node name="Upper" type="Sprite2D" parent="."]
+position = Vector2(0, -68)
+texture = ExtResource("1_jc30c")
+offset = Vector2(0, -380)
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -185.5)
+shape = SubResource("RectangleShape2D_vlsqs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -465.5)
+shape = SubResource("RectangleShape2D_x0tuk")
+
+[node name="ScoreArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
+position = Vector2(46.5, -34)
+shape = SubResource("RectangleShape2D_ah8fh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]

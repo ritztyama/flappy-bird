@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://clhlm54wip6k"]
+
+[ext_resource type="Texture2D" uid="uid://dfuofh4nwer0n" path="res://assets/bird1.png" id="1_mpu6x"]
+[ext_resource type="FontFile" uid="uid://iaj10v1a74go" path="res://assets/Xolonium-Regular.ttf" id="2_341q3"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_left = -96.0
+offset_top = -63.0
+offset_right = 941.0
+offset_bottom = 1040.0
+color = Color(0.847059, 0.882353, 0.976471, 1)
+
+[node name="Bird1" type="Sprite2D" parent="."]
+position = Vector2(493, 677)
+rotation = -0.349066
+scale = Vector2(13.6667, 13.6667)
+texture = ExtResource("1_mpu6x")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 77.0
+offset_right = 813.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(0.368627, 0.529412, 0.839216, 1)
+theme_override_fonts/font = ExtResource("2_341q3")
+theme_override_font_sizes/font_size = 100
+text = "flappy_bird"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 309.0
+offset_top = 212.0
+offset_right = 768.0
+offset_bottom = 321.0
+theme_override_colors/font_color = Color(0.909804, 0.290196, 0.180392, 1)
+theme_override_fonts/font = ExtResource("2_341q3")
+theme_override_font_sizes/font_size = 90
+text = "Let's play"

@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://bslmmb43bkpcg"]
+
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_g6cd3"]
+[ext_resource type="Script" path="res://main.gd" id="1_pmiux"]
+[ext_resource type="PackedScene" uid="uid://feijn65ti440" path="res://bird.tscn" id="2_2gqar"]
+[ext_resource type="PackedScene" uid="uid://bx74fdhtd1osw" path="res://pipe.tscn" id="2_b615q"]
+[ext_resource type="PackedScene" uid="uid://ppgqh0xrxfey" path="res://ground.tscn" id="4_1avx4"]
+[ext_resource type="PackedScene" uid="uid://c3r13pl31djjs" path="res://game_over.tscn" id="7_3bwuh"]
+[ext_resource type="FontFile" uid="uid://iaj10v1a74go" path="res://assets/Xolonium-Regular.ttf" id="8_8aivl"]
+[ext_resource type="PackedScene" uid="uid://f2v0oasm0ojm" path="res://start.tscn" id="9_nmy4u"]
+[ext_resource type="PackedScene" uid="uid://clhlm54wip6k" path="res://color_rect.tscn" id="10_skike"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_pmiux")
+pipe_scene = ExtResource("2_b615q")
+
+[node name="BestScore" type="Label" parent="."]
+z_index = 2
+offset_left = 46.0
+offset_top = 2.0
+offset_right = 278.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.980392, 0.792157, 0.803922, 0.87451)
+theme_override_fonts/font = ExtResource("8_8aivl")
+theme_override_font_sizes/font_size = 40
+text = "Best:"
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_g6cd3")
+offset = Vector2(432, 384)
+
+[node name="Bird" parent="." instance=ExtResource("2_2gqar")]
+
+[node name="Ground" parent="." instance=ExtResource("4_1avx4")]
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 2
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_right = 32.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "SCORE:0"
+
+[node name="GameOver" parent="." instance=ExtResource("7_3bwuh")]
+
+[node name="start" parent="." instance=ExtResource("9_nmy4u")]
+
+[node name="ColorRect" parent="." instance=ExtResource("10_skike")]
+z_index = 1
+
+[connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]
+[connection signal="start" from="start" to="." method="_on_start_start"]
